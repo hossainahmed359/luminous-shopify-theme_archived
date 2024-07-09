@@ -1,36 +1,42 @@
+{% if section.settings.banner_404 == blank %}
+  {% assign banner_bg_url = 'https://cdn.shopify.com/s/files/1/0639/4934/0808/files/section-4.jpg?v=1720468133' %}
+{% else %}
+  {% assign banner_bg_url = section.settings.banner_404 %}
+{% endif %}
 
+<section
+  class="home-section home-parallax home-fade home-full-height bg-dark bg-dark-30"
+  id="home"
+  data-background="{{ banner_bg_url }}"
+>
+  <div class="titan-caption">
+    <div class="caption-content">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'header_404' %}
+            <div class="font-alt mb-30 titan-title-size-4">{{ section.settings.title_404 }}</div>
 
+          {% when 'subtitle_404' %}
+            <div class="font-alt">
+              {{ section.settings.subtext_404 }}
+            </div>
 
-  {% if section.settings['banner_404'] == blank %}
-      {% assign banner_bg_url = 'https://cdn.shopify.com/s/files/1/0639/4934/0808/files/section-4.jpg?v=1720468133' %}
-  {% else %}
-      {% assign banner_bg_url = section.settings['banner_404'] %}
-  {% endif %}
+          {% when 'redirect_button' %}
+            <div class="font-alt mt-30">
+              {% if section.settings.button_url == blank %}
+                {% assign redirect_url = routes.root_url %}
+              {% else %}
+                {% assign redirect_url = section.settings.button_url %}
+              {% endif %}
+              <a class="btn btn-border-w btn-round" href="{{ redirect_url }}">{{ section.settings.button_label }}</a>
+            </div>
 
-  <section
-    class="home-section home-parallax home-fade home-full-height bg-dark bg-dark-30"
-    id="home"
-    data-background="{{ banner_bg_url }}"
-  >
-    <div class="titan-caption">
-      <div class="caption-content">
-        <div class="font-alt mb-30 titan-title-size-4">{{ section.settings['title_404'] }}</div>
-        <div class="font-alt">
-          {{ section.settings['subtext_404'] }}
-        </div>
-        <div class="font-alt mt-30">
-          {% if section.settings['button_url'] == blank %}
-            {% assign redirect_url = routes.root_url %}
           {% else %}
-            {% assign redirect_url = section.settings['button_url'] %}    
-            
-          {% endif %}
-          <a class="btn btn-border-w btn-round" href="{{ redirect_url }}">{{ section.settings['button_label'] }}</a>
-        </div>
-      </div>
+        {% endcase %}
+      {% endfor %}
     </div>
-  </section>
-
+  </div>
+</section>
 
 {% schema %}
 {
@@ -65,6 +71,23 @@
       "type": "url",
       "id": "button_url",
       "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "header_404",
+      "name": "Header",
+      "limit": 1
+    },
+    {
+      "type": "subtitle_404",
+      "name": "Subtitle",
+      "limit": 1
+    },
+    {
+      "type": "redirect_button",
+      "name": "Redirect Button",
+      "limit": 1
     }
   ]
 }
