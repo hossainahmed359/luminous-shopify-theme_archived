@@ -48,11 +48,9 @@
   <body>
     <main>
       {% section 'loader' %}
-      {% section 'header' %}
-
+  
       {{ content_for_layout }}
 
-      {% section 'footer' %}
     </main>
 
     <script src="{{ 'jquery.js' |  asset_url }}" defer></script>
