@@ -1,0 +1,11 @@
+{% for link in links %}
+    <li class="{% if link.links != blank %} dropdown {% endif %}">
+        <a href="{{ link.link }}" class="{% if link.links != blank  %} dropdown-toggle {% endif  %}" data-toggle="dropdown">
+            {{ link.title }}
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            {% render 'linklist' , links: link.links %}
+        </ul>
+    </li>
+{% endfor %}
+
