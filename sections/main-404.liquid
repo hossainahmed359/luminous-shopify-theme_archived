@@ -10,20 +10,18 @@
     data-background="{{ banner_bg_url }}">
     <div class="titan-caption">
         <div class="caption-content">
-
-
-        <div class="font-alt mb-30 titan-title-size-4">{{ section.settings.title_404 }}</div>
-        <div class="font-alt">
-            {{ section.settings.subtext_404 }}
-        </div>
-        <div class="font-alt mt-30">
-            {% if section.settings.button_url == blank %}
-            {% assign redirect_url = routes.root_url %}
-            {% else %}
-            {% assign redirect_url = section.settings.button_url %}
-            {% endif %}
-            <a class="btn btn-border-w btn-round" href="{{ redirect_url }}">{{ section.settings.button_label }}</a>
-        </div>
+            <div class="font-alt mb-30 titan-title-size-4">{{ section.settings.title_404 }}</div>
+            <div class="font-alt">
+                {{ section.settings.subtext_404 }}
+            </div>
+            <div class="font-alt mt-30">
+                {% if section.settings.button_url == blank %}
+                    {% assign redirect_url = routes.root_url %}
+                {% else %}
+                    {% assign redirect_url = section.settings.button_url %}
+                {% endif %}
+                <a class="btn btn-border-w btn-round" href="{{ redirect_url }}">{{ section.settings.button_label }}</a>
+            </div>
         </div>
     </div>
 </section>
@@ -46,7 +44,7 @@
             "default": "Error 404"
         },
         {
-            "type": "text",
+            "type": "richtext",
             "id": "subtext_404",
             "label": "404 Sub Text",
             "default": "The requested URL was not found on this server.<br> That is all we know."

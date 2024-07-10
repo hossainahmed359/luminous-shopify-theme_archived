@@ -1,0 +1,83 @@
+<section class="home-section home-fade home-full-height" id="home">
+  <div class="hero-slider">
+    <ul class="slides">
+        {% for block in section.blocks %}
+            {% assign img_url = block['slide_image'] | 'https://cdn.shopify.com/s/files/1/0639/4934/0808/files/slider1.png?v=1720466227' %}
+            {% assign slide_learn_more_url = block['slide_learn_more_url'] | '#' %}
+            
+        {% endfor %}
+      <li class="bg-dark-30 bg-dark shop-page-header" style="background-image:url('{{ img_url }}')">
+        <div class="titan-caption">
+          <div class="caption-content">
+            <div class="font-alt mb-30 titan-title-size-1">{{ block['slide_heading_one'] }}</div>
+            <div class="font-alt mb-30 titan-title-size-4"> {{ block['slide_heading_two'] }}</div>
+            <div class="font-alt mb-40 titan-title-size-1">{{ block['slide_heading_three'] }}</div>
+            <a class="section-scroll btn btn-border-w btn-round" href="{{ slide_learn_more_url }}">
+                {{ block['slide_learn_more_text'] }}
+            </a>
+          </div>
+        </div>
+      </li>
+      {% comment %} <li class="bg-dark-30 bg-dark shop-page-header" style="background-image:url('https://cdn.shopify.com/s/files/1/0639/4934/0808/files/slider1.png?v=1720466227');">
+        <div class="titan-caption">
+          <div class="caption-content">
+            <div class="font-alt mb-30 titan-title-size-1"> This is Titan</div>
+            <div class="font-alt mb-40 titan-title-size-4">Exclusive products</div>
+            <a class="section-scroll btn btn-border-w btn-round" href="#latest">Learn More</a>
+          </div>
+        </div>
+      </li> {% endcomment %}
+    </ul>
+  </div>
+</section>
+
+
+{% schema %}
+    {
+    "name": "Slider",
+    "blocks": [
+        {
+            "type": "slide",
+            "name": "slide",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id" : "slide_image",
+                    "label": "Slider Image"
+                },
+                {
+                    "type": "text",
+                    "id" : "slide_heading_one",
+                    "label": "Slide Heading One",
+                    "default": ""
+                },
+                {
+                    "type": "text",
+                    "id" : "slide_heading_two",
+                    "label": "Slide Heading Two",
+                    "default": ""
+                },
+                {
+                    "type": "text",
+                    "id" : "slide_heading_three",
+                    "label": "Slide Heading Three",
+                    "default": ""
+                },
+                {
+                    "type": "text",
+                    "id" : "slide_learn_more_text",
+                    "label": "Details Link Text",
+                    "default": "Learn More"
+                },
+                {
+                    "type": "url",
+                    "id" : "slide_learn_more_url",
+                    "label": "Details Link URL",
+                    "default": "#"
+                }
+            ],
+            "limit": 5
+        }
+    ]
+    }
+{% endschema %}
